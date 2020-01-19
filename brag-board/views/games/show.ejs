@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Document</title>
+<body>
+    <section id="show-page">
+        <div>Title:</div>
+        <div><%= game.title %></div>
+        <div>Description:</div>
+        <div><%= game.content %></div>
+        <div>Proof:</div>
+        <div><%= game.proof %></div>
+    </section>
+    <br /><br />
+    <h2>Comments</h2>
+        <form id="add-comment-form" method="POST" action="/comment/<%= game._id %>/comments">
+            <label>Comment:</label>
+            <textarea name="content"></textarea>
+            <label>Rating:</label>
+            <select name="rating">
+                <option value="1">Awesome Job!</option>
+                <option value="2">I Can Do Better!</option>
+                <option value="3">SHAME!</option>
+            </select>
+        <input type="submit" value="Add Comment" />
+        </form>
+    
+    <% if (game.comments.length) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Comment</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% game.comments.forEach(function(g) { %>
+                <tr>
+                  <td><%= g.createdAt.toLocaleDateString() %></td>
+                  <td><%= g.content %></td>
+                  <td><%= g.rating %></td>
+                </tr>
+                <% }); %>
+                <tr>
+                    <td colspan="2"></td>
+                    <td><strong><%= (total / game.comments.length).toFixed(1) %></strong></td>
+                  </tr>
+              </tbody>
+            </table>
+            <% } else { %>
+            <h5>No Comments Yet</h5>
+            <% } %>
+            <br>
+      
+      
+</body>

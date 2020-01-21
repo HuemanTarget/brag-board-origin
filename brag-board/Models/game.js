@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-var commentSchema = new Schema({
+let commentSchema = new Schema({
     content: String,
     rating: {
       type: String,
@@ -11,7 +11,7 @@ var commentSchema = new Schema({
     timestamps: true
   });
 
-var bragSchema = new Schema({
+let gameSchema = new Schema({
     game: {
       type: String,
       enum: ['Call Of Duty', 'Destiny', 'Fortnite', 'Halo'],
@@ -30,4 +30,4 @@ var bragSchema = new Schema({
   });
 
 
-  module.exports = mongoose.model('Brag', bragSchema)
+  module.exports = mongoose.model('Game', gameSchema)

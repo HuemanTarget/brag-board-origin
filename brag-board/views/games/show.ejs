@@ -24,6 +24,7 @@
         <div>Proof:</div>
         <div><%= game.proof %></div>
     </section>
+    <a href='/games/edit/<%= id%>'>Edit Brag</a>
     <br /><br />
     <h2>Comments</h2>
         <form id="add-comment-form" method="POST" action="/comment/<%= game._id %>/comments">

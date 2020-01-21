@@ -1,4 +1,4 @@
-const Game = require('../Models/brag')
+const Game = require('../Models/game')
 
 const index = (req, res) => {
   Game.find({}, (err, games) => {
@@ -10,17 +10,18 @@ const index = (req, res) => {
 }
 
 const show = (req, res) => {
-  Game.findById(req.params.id)
+    Game.findById(req.params.id)
     /* .populate('ticket') */
     .exec((err, game) => {
       // Performer.find({}).where('_id').nin(movie.cast)
       /* Ticket.find({ _id: { $nin: flight.ticket } }).exec((err, seat) => { */
-        res.render('games/show', {
-          title: 'Game Brag Detail',
-          game,
+    res.render('games/show', {
+    title: 'Game Brag Detail',
+    id: req.params.id,
+    game,
         })
-      })
-    }
+    })
+}
 
 
 const newBrag = (req, res) => {
@@ -31,7 +32,6 @@ const newBrag = (req, res) => {
 
 const deleteBrag = (req, res) =>{
     Game.findByIdAndDelete({_id:req.params.id}, (err, game)=>{
-        console.log(game)
         if(err){
             return res.redirect('/games')
         } 
@@ -53,6 +53,17 @@ const create = (req, res) => {
   })
 }
 
+const edit = (req, res) => {
+    res.render('games/edit',{
+        id: req.params.id,
+        game: req.params.id
+    })
+}
+
+const update = (req, res) => {
+    Game.update(req.params.id, req.body.game);
+    res.redirect('/games');
+  }
 
 module.exports = {
   index,
@@ -60,4 +71,6 @@ module.exports = {
   new: newBrag,
   create,
   delete: deleteBrag,
+  edit,
+  update,
 }

@@ -8,7 +8,15 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <title>Document</title>
 <body>
+    <header>
+        <h1 class="maintitle">BRAG BOARD</h1>
+        <div class="topnav">
+          <a href="/logout">Log Out</a>
+          <a href="/auth/google">Login with Google</a>
+        </div>
+    </header>
     <section id="show-page">
+        <div><%= game.game %></div>
         <div>Title:</div>
         <div><%= game.title %></div>
         <div>Description:</div>
@@ -24,39 +32,14 @@
             <label>Rating:</label>
             <select name="rating">
                 <option value="1">Awesome Job!</option>
-                <option value="2">I Can Do Better!</option>
-                <option value="3">SHAME!</option>
+                <option value="2">Keep It Up!</option>
+                <option value="3">I Can Do Better!</option>
+                <option value="4">SHAME!</option>
             </select>
         <input type="submit" value="Add Comment" />
-        </form>
+        
+                
     
-    <% if (game.comments.length) { %>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Comment</th>
-                    <th>Rating</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% game.comments.forEach(function(g) { %>
-                <tr>
-                  <td><%= g.createdAt.toLocaleDateString() %></td>
-                  <td><%= g.content %></td>
-                  <td><%= g.rating %></td>
-                </tr>
-                <% }); %>
-                <tr>
-                    <td colspan="2"></td>
-                    <td><strong><%= (total / game.comments.length).toFixed(1) %></strong></td>
-                  </tr>
-              </tbody>
-            </table>
-            <% } else { %>
-            <h5>No Comments Yet</h5>
-            <% } %>
-            <br>
       
       
 </body>

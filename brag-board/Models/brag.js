@@ -3,12 +3,19 @@ const Schema = mongoose.Schema
 
 var commentSchema = new Schema({
     content: String,
-    rating: String,
+    rating: {
+      type: String,
+      enum: ['Awesome Job!', 'Keep It Up!', 'I Can Do Better!', 'SHAME!'],
+    }
   }, {
     timestamps: true
   });
 
-var gameSchema = new Schema({
+var bragSchema = new Schema({
+    game: {
+      type: String,
+      enum: ['Call Of Duty', 'Destiny', 'Fortnite', 'Halo'],
+    },
     title: String,
     content: String,
     proof: String,
@@ -22,4 +29,5 @@ var gameSchema = new Schema({
     timestamps: true
   });
 
-  module.exports = mongoose.model('Game', gameSchema)
+
+  module.exports = mongoose.model('Brag', bragSchema)

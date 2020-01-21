@@ -1,4 +1,4 @@
-var Game = require('../models/game')
+var Game = require('../Models/brag')
 
 const create = (req, res) => {
   Game.findById(req.params.id, (err, game) => {

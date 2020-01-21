@@ -1,4 +1,4 @@
-var Game = require('../models/game')
+const Game = require('../Models/brag')
 
 const index = (req, res) => {
   Game.find({}, (err, games) => {
@@ -29,21 +29,35 @@ const newBrag = (req, res) => {
   })
 }
 
+const deleteBrag = (req, res) =>{
+    Game.findByIdAndDelete({_id:req.params.id}, (err, game)=>{
+        console.log(game)
+        if(err){
+            return res.redirect('/games')
+        } 
+        else{
+            res.redirect('/games');
+             
+        }
+    })
+}
+
 const create = (req, res) => {
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key]
   }
-  var game = new Game(req.body)
+  let game = new Game(req.body)
   game.save(err => {
     if (err) return res.redirect('/games/new')
-    // res.redirect('/movies');
-    res.redirect(`/games/${game._id}`)
+    res.redirect(`/games/`)
   })
 }
+
 
 module.exports = {
   index,
   show,
   new: newBrag,
   create,
+  delete: deleteBrag,
 }

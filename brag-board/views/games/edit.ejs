@@ -1,0 +1,12 @@
+<body>
+    <h1>Edit Brag</h1>
+	    <form action="/games/edit/<%= id %>?_method=PUT" method="POST" autocomplete="off">
+	    <input type="text" name="title" value="<%= game.title %>"/>
+		<button type="submit">Update Title</button>
+        </form>
+        <form action="/games/edit/<%= id %>?_method=PUT" method="PUT" autocomplete="off">
+	<input type="text" name="todo" value="<%= todo.done %>"/>
+	<button type="submit">Toggle Complete</button>
+  </form>
+<a href="/games">Back</a>
+</body>

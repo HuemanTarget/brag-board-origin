@@ -19,10 +19,10 @@
     <div class="sidenav">
       <a href="../">Home</a>
       <a href="/games/new/">Create A Brag</a>
-      <a href="#Call Of Duty">Call Of Duty</a>
-      <a href="#Destiny">Destiny</a>
-      <a href="#Fotnite">Fortnite</a>
-      <a href="#Halo">Halo</a>
+      <a href="#Sports">Sports</a>
+      <a href="#FoodAndDrink">Food And Drink</a>
+      <a href="#HumanBody">Human Body</a>
+      <a href="#contact">Contact</a>
     </div>
     <div class="main">
       <h1><%= title %></h1>
@@ -30,11 +30,13 @@
       <% games.forEach(g => { %>
         <li>
             <tr>
+            <td><%= g.game %></td> <br>  
             <td><%= g.title %></td> <br>
             <td><%= g.content %></td> <br>
             <td><%= g.proof %></td> <br>
             <td><%= g.user %></td>
             <td><a href="/games/<%= g._id %>">BRAG DETAILS</a></td>
+            <form action="/games/<%= g._id %>?_method=DELETE" method="POST" class="delete-form"><button type="submit">X</button></form>
             </tr>
         </li>
         <% }) %>

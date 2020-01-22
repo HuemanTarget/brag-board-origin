@@ -20,10 +20,10 @@ let gameSchema = new Schema({
     content: String,
     proof: String,
     shame: Boolean,
+    comments: [commentSchema],
     user: [{
       type: Schema.Types.ObjectId, 
       ref: 'User',
-    comments: [commentSchema],
   }]
   }, {
     timestamps: true

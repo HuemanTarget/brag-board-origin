@@ -22,6 +22,7 @@ require('./config/database')
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
+app.use(methodOverride('_method'));
 app.set("view engine", "ejs");
 
 app.use(logger("dev"));
@@ -36,7 +37,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(methodOverride('_method'));
 
 app.use("/", indexRouter);
 app.use('/games', gamesRouter)

@@ -4,7 +4,8 @@ mongoose.connect('mongodb://localhost/bragboard',
     {
         useNewUrlParser: true, 
         useCreateIndex: true,
-        useUnifiedTopology: true //get rid of deprication warning
+        useUnifiedTopology: true, //get rid of deprication warning
+        useFindAndModify: false
     }
 );
 

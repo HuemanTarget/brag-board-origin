@@ -49,21 +49,35 @@ const create = (req, res) => {
   let game = new Game(req.body)
   game.save(err => {
     if (err) return res.redirect('/games/new')
-    res.redirect(`/games/`)
+    res.redirect(`/games`)
   })
 }
 
 const edit = (req, res) => {
-    res.render('games/edit',{
-        id: req.params.id,
-        game: req.params.id
+    Game.findById(req.params.id, (err, game) => {
+        res.render('games/edit',{
+            id: req.params.id,
+            game,
+        })
     })
 }
 
 const update = (req, res) => {
-    Game.update(req.params.id, req.body.game);
-    res.redirect('/games');
-  }
+    console.log(req.params)
+    Game.findByIdAndUpdate(req.params.id, req.body, (err, result) => {
+
+            if(err){
+                console.log(err);
+            }
+            console.log("RESULT: " + result);
+            res.redirect('/games');
+        });
+    };
+    /* Game.findByIdAndUpdate(id, updateObj, {new: true}, function(err, game) {
+        game, */
+
+    // Game.update(req.params.id, req.body.title);
+//   })
 
 module.exports = {
   index,

@@ -18,7 +18,7 @@ const gamesRouter = require('./routes/games')
 
 const app = express();
 
-require('./config/database')
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

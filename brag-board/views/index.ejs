@@ -12,8 +12,11 @@
     <header>
       <h1 class="maintitle">BRAG BOARD</h1>
       <div class="topnav">
+        <% if (user) { %>
         <a href="/logout">Log Out</a>
+        <% } else { %>
         <a href="/auth/google">Login with Google</a>
+        <% } %>
       </div>
     </header>
     <div class="sidenav">

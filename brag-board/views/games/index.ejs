@@ -26,15 +26,11 @@
     </div>
     <div class="main">
       <h1><%= title %></h1>
-      <h4>Latest Brags</h4>
       <% games.forEach(g => { %>
         <li>
-            <tr>
-            <td><%= g.game %></td> <br>  
-            <td><%= g.title %></td> <br>
-            <td><%= g.content %></td> <br>
-            <td><%= g.proof %></td> <br>
-            <td><%= g.user %></td>
+            <tr> 
+            <td><h2><%= g.title %></h2></td>
+            <td><p><%= g.content %></p></td>
             <td><a href="/games/<%= g._id %>">BRAG DETAILS</a></td>
             <form action="/games/<%= g._id %>?_method=DELETE" method="POST" class="delete-form"><button type="submit">X</button></form>
             </tr>

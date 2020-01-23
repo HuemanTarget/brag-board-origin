@@ -4,7 +4,14 @@ const Schema = mongoose.Schema
 var userSchema = new Schema({
     name: String,
     email: String,
-    brags: String,
+    brags: [{
+      type: Schema.Types.ObjectId, 
+      ref: 'Brag',
+    }],
+    comments: [{
+      type: Schema.Types.ObjectId, 
+      ref: 'Comments',
+    }],
     likes: String,
     shame: Boolean,
     googleId: String

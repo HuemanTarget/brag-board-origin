@@ -11,7 +11,7 @@ let commentSchema = new Schema({
     timestamps: true
   });
 
-let gameSchema = new Schema({
+let bragSchema = new Schema({
     game: {
       type: String,
       enum: ['Call Of Duty', 'Destiny', 'Fortnite', 'Halo'],
@@ -30,4 +30,4 @@ let gameSchema = new Schema({
   });
 
 
-  module.exports = mongoose.model('Game', gameSchema)
+  module.exports = mongoose.model('Brag', bragSchema)

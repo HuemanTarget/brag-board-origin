@@ -1,21 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <title>Document</title>
-</head>
-  <body>
-    <header>
-      <h1 class="maintitle">BRAG BOARD</h1>
-      <div class="topnav">
-        <a href="/logout">Log Out</a>
-        <a href="/auth/google">Login with Google</a>
-      </div>
-    </header>
+<%- include('../partials/header') %>
+
     <div class="sidenav">
       <a href="../">Home</a>
       <a href="/games/new/">Create A Brag</a>
@@ -24,15 +8,15 @@
       <a href="#HumanBody">Human Body</a>
       <a href="#contact">Contact</a>
     </div>
-    <div class="main">
+    <div class="gamemain">
       <h1><%= title %></h1>
       <% games.forEach(g => { %>
         <li>
             <tr> 
-            <td><h2><%= g.title %></h2></td>
+            <td><h3><%= g.game %></h3></td>
+            <td><h2><a href="/games/<%= g._id %>"><%= g.title %></a></h2></td>
             <td><p><%= g.content %></p></td>
-            <td><a href="/games/<%= g._id %>">BRAG DETAILS</a></td>
-            <form action="/games/<%= g._id %>?_method=DELETE" method="POST" class="delete-form"><button type="submit">X</button></form>
+            <form action="/games/<%= g._id %>?_method=DELETE" method="POST" class="delete-form"><button type="submit">Delete Brag</button></form>
             </tr>
         </li>
         <% }) %>

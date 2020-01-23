@@ -72,4 +72,11 @@
 
 li {
   list-style-type: none;
+  border-style: inset;
+  text-align: center;
+  padding-bottom: 2px;
+}
+
+.gamemain {
+  text-align: center;
 }

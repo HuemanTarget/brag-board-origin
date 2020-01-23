@@ -1,9 +1,11 @@
-const Game = require('../Models/game')
+const Game = require('../model/brag')
+const User = require('../model/user')
 
 const index = (req, res) => {
-  Game.find({}, (err, games) => {
+  Game.find({}, async (err, games) => {
     res.render('games/index', { 
       title: 'All Game Brags', 
+      user: req.user,
       games
     })
   })
@@ -11,13 +13,16 @@ const index = (req, res) => {
 
 const show = (req, res) => {
     Game.findById(req.params.id)
+    .populate('user')
     /* .populate('ticket') */
     .exec((err, game) => {
+        console.log(game)
       // Performer.find({}).where('_id').nin(movie.cast)
       /* Ticket.find({ _id: { $nin: flight.ticket } }).exec((err, seat) => { */
     res.render('games/show', {
     title: 'Game Brag Detail',
     id: req.params.id,
+    user: req.user,
     game,
         })
     })
@@ -26,7 +31,8 @@ const show = (req, res) => {
 
 const newBrag = (req, res) => {
   res.render('games/new', { 
-    title: 'Add Game Brag' 
+    title: 'Add Game Brag',
+    user: req.user,
   })
 }
 
@@ -43,41 +49,46 @@ const deleteBrag = (req, res) =>{
 }
 
 const create = (req, res) => {
-  for (let key in req.body) {
-    if (req.body[key] === '') delete req.body[key]
+    // console.log(req.user._id)
+    User.findById(req.user._id, async (err, user) => {
+        console.log(user)
+        for (let key in req.body) {
+            if (req.body[key] === '') delete req.body[key]
+        }
+        console.log(req.body)
+        let game = await new Game(req.body)
+        user.brags.push(game)
+        await user.save()
+        game.user.push(user)
+        await game.save()
+        res.redirect(`/games`)
+    })
+
+
+    
   }
-  let game = new Game(req.body)
-  game.save(err => {
-    if (err) return res.redirect('/games/new')
-    res.redirect(`/games`)
-  })
-}
+
 
 const edit = (req, res) => {
     Game.findById(req.params.id, (err, game) => {
         res.render('games/edit',{
             id: req.params.id,
+            user: req.user,
             game,
         })
     })
 }
 
 const update = (req, res) => {
-    console.log(req.params)
     Game.findByIdAndUpdate(req.params.id, req.body, (err, result) => {
 
             if(err){
                 console.log(err);
             }
             console.log("RESULT: " + result);
-            res.redirect('/games');
+            res.redirect('/games/show');
         });
     };
-    /* Game.findByIdAndUpdate(id, updateObj, {new: true}, function(err, game) {
-        game, */
-
-    // Game.update(req.params.id, req.body.title);
-//   })
 
 module.exports = {
   index,

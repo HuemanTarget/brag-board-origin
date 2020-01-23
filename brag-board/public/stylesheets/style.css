@@ -80,3 +80,57 @@ li {
 .gamemain {
   text-align: center;
 }
+
+.avatar {
+  float: right;
+  padding-top: 5px;
+}
+
+#new-form {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(2, minmax(auto, 22rem));
+}
+
+#new-form *,
+#add-comment-form *,
+#add-performer-form * {
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+#new-form input[type="submit"] {
+  grid-column: span 2;
+  width: 10rem;
+  margin-left: auto;
+
+}
+
+#show-page {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, 22rem));
+  grid-gap: 1rem;
+  text-align: center;
+}
+
+#show-page div:nth-child(even) {
+  font-weight: bold;
+}
+
+table {
+  font-size: 20px;
+}
+
+table thead th {
+  padding: 5px;
+  border-bottom: 2px solid #424748;
+}
+
+table td {
+  padding: 10px;
+  text-align: center;
+}
+

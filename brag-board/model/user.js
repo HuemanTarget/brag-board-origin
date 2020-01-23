@@ -14,7 +14,8 @@ var userSchema = new Schema({
     }],
     likes: String,
     shame: Boolean,
-    googleId: String
+    googleId: String,
+    avatar: String,
   }, {
     timestamps: true
   });

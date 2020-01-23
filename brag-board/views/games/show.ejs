@@ -14,7 +14,7 @@
     </section>
     <a href='/games/edit/<%= id%>'>Edit Brag</a>
     <br /><br />
-    <h2>Comments</h2>
+    <h2>Comments:</h2>
         <form id="add-comment-form" method="POST" action="/games/<%= game._id %>/comments">
             <label>Comment:</label>
             <textarea name="content"></textarea>
@@ -34,7 +34,6 @@
             <th>Date</th>
             <th>Comments</th>
             <th>Rating</th>
-            <th>User</th>
           </tr>
         </thead>
         <tbody>

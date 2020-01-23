@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+
 var commentsCtrl = require('../controllers/comments');
 
 /* router.get('/', (req,res)=>{

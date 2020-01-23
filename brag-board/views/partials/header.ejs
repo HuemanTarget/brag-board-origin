@@ -14,6 +14,7 @@
       <div class="topnav">
         <% if (user) { %>
         <a href="/logout">Log Out</a>
+        <img class="avatar" src="<%= user.avatar %>" height="40">
         <% } else { %>
         <a href="/auth/google">Login with Google</a>
         <% } %>

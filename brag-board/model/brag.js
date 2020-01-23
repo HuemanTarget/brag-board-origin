@@ -20,11 +20,17 @@ let bragSchema = new Schema({
     content: String,
     proof: String,
     shame: Boolean,
+    date: {
+      type: Date, default: function(){
+          let d = new Date()
+          return d.toLocaleDateString();
+      }
+    },
     comments: [commentSchema],
     user: [{
       type: Schema.Types.ObjectId, 
       ref: 'User',
-  }]
+    }]
   }, {
     timestamps: true
   });

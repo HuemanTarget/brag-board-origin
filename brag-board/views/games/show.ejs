@@ -11,8 +11,12 @@
         <div><%= game.content %></div>
         <div>Proof:</div>
         <a href="<%= game.proof %>" target="_blank"><%= game.proof %></a>
+        <p><%= game.date %></p>
     </section>
+    <% if (game.user[0]._id.toString() === user._id.toString()) { %>
     <a href='/games/edit/<%= id%>'>Edit Brag</a>
+    <% } %>
+    <a href='/games/'>Back</a>
     <br /><br />
     <h2>Comments:</h2>
         <form id="add-comment-form" method="POST" action="/games/<%= game._id %>/comments">
@@ -41,8 +45,7 @@
           <tr>
             <td><%= c.createdAt.toLocaleDateString() %></td>
             <td><%= c.content %></td>
-            <td><%= c.rating %></td>
-            
+            <td><%= c.rating %></td> 
           </tr>
           <% }); %>
         </tbody>

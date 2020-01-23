@@ -3,13 +3,32 @@ const User = require('../model/user')
 
 const index = (req, res) => {
   Game.find({}, async (err, games) => {
+    if(err){
+      return res.redirect('/games/new')
+    } 
+    else{
+      const sortedGames = games.sort((a, b) => (a.date > b.date) ? 1 : -1)
     res.render('games/index', { 
       title: 'All Game Brags', 
       user: req.user,
       games
     })
+  }
   })
 }
+
+
+/* if(err){
+  return res.redirect('/flights/new')
+} 
+else{
+  const sortedFlights = flights.sort((a, b) => (a.departs > b.departs) ? 1 : -1)
+  console.log(sortedFlights)
+  res.render('flights/filter',{
+      flights: sortedFlights
+  });
+  return console.log(flights)
+} */
 
 const show = (req, res) => {
     Game.findById(req.params.id)
@@ -86,7 +105,7 @@ const update = (req, res) => {
                 console.log(err);
             }
             console.log("RESULT: " + result);
-            res.redirect('/games/show');
+            res.redirect('/games/');
         });
     };
 
